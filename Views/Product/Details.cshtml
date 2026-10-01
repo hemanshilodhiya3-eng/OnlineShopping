@@ -1,0 +1,86 @@
+@model OnlineShopping.Models.Product
+
+@{
+    // Set the browser page title.
+    ViewData["Title"] = "Product Details";
+}
+
+<!-- Display the page heading. -->
+<h1 class="mb-4">Product Details</h1>
+
+<!-- Create a Bootstrap card. -->
+<div class="card">
+
+    <!-- Card body contains product information. -->
+    <div class="card-body">
+
+        <!-- Display product name. -->
+        <h2 class="card-title">
+            @Model.ProductName
+        </h2>
+
+        <!-- Display product ID. -->
+        <p>
+            <strong>Product ID:</strong>
+            @Model.ProductId
+        </p>
+
+        <!-- Display category. -->
+        <p>
+            <strong>Category:</strong>
+            @Model.Category
+        </p>
+
+        <!-- Display original price. -->
+        <p>
+            <strong>Original Price:</strong>
+            $@Model.Price.ToString("0.00")
+        </p>
+
+        <!-- Display discount percentage. -->
+        <p>
+            <strong>Discount:</strong>
+            @Model.DiscountPercentage%
+        </p>
+
+        <!-- Display calculated discounted price. -->
+        <p>
+            <strong>Discounted Price:</strong>
+
+            <span class="text-success">
+                $@Model.GetDiscountedPrice().ToString("0.00")
+            </span>
+        </p>
+
+        <!-- Display customer name stored in cookie. -->
+        <p>
+            <strong>Customer:</strong>
+            @ViewBag.CustomerName
+        </p>
+
+        <!-- Create the order form. -->
+        <form action="/Product/Order"
+              method="post">
+
+            <!-- Hidden field sends ProductId to the server. -->
+            <input type="hidden"
+                   name="productId"
+                   value="@Model.ProductId" />
+
+            <!-- Submit the order. -->
+            <button type="submit"
+                    class="btn btn-success">
+                Select Product
+            </button>
+
+            <!-- Return to product list. -->
+            <a href="/Product"
+               class="btn btn-secondary">
+                Back
+            </a>
+
+        </form>
+
+    </div>
+
+</div>

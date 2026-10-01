@@ -1,0 +1,104 @@
+@model List<OnlineShopping.Models.Product>
+
+@{
+    // Set the browser page title.
+    ViewData["Title"] = "Products";
+}
+
+<!-- Display the main heading. -->
+<h1 class="mb-4">Online Shopping Product Management</h1>
+
+<!-- Explain the source of the product data. -->
+<p class="lead">
+    Products retrieved asynchronously from Fake Store API.
+</p>
+
+<!-- Create a responsive table. -->
+<div class="table-responsive">
+
+    <!-- Display all products in a table. -->
+    <table class="table table-bordered table-striped">
+
+        <!-- Table header. -->
+        <thead class="table-dark">
+
+            <!-- Header row. -->
+            <tr>
+
+                <!-- Product ID column. -->
+                <th>Product ID</th>
+
+                <!-- Product name column. -->
+                <th>Product Name</th>
+
+                <!-- Category column. -->
+                <th>Category</th>
+
+                <!-- Original price column. -->
+                <th>Price</th>
+
+                <!-- Discount column. -->
+                <th>Discount</th>
+
+                <!-- Discounted price column. -->
+                <th>Discounted Price</th>
+
+                <!-- Details button column. -->
+                <th>Action</th>
+
+            </tr>
+
+        </thead>
+
+        <!-- Table body. -->
+        <tbody>
+
+            <!-- Loop through every product. -->
+            @foreach (var product in Model)
+            {
+                <!-- Create one row for each product. -->
+                <tr>
+
+                    <!-- Display product ID. -->
+                    <td>@product.ProductId</td>
+
+                    <!-- Display product name. -->
+                    <td>@product.ProductName</td>
+
+                    <!-- Display product category. -->
+                    <td>@product.Category</td>
+
+                    <!-- Display original price. -->
+                    <td>
+                        $@product.Price.ToString("0.00")
+                    </td>
+
+                    <!-- Display discount percentage. -->
+                    <td>
+                        @product.DiscountPercentage%
+                    </td>
+
+                    <!-- Calculate and display discounted price. -->
+                    <td>
+                        $@product.GetDiscountedPrice().ToString("0.00")
+                    </td>
+
+                    <!-- Display details button. -->
+                    <td>
+
+                        <!-- Pass ProductId through the URL. -->
+                        <a href="/Product/Details?id=@product.ProductId"
+                           class="btn btn-primary btn-sm">
+                            Details
+                        </a>
+
+                    </td>
+
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+
+</div>

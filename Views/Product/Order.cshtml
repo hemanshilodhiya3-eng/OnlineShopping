@@ -1,0 +1,36 @@
+@{
+    // Set the browser page title.
+    ViewData["Title"] = "Order Confirmation";
+}
+
+<!-- Display confirmation heading. -->
+<h1 class="mb-4">Order Confirmation</h1>
+
+<!-- Display customer name from cookie. -->
+<p>
+    <strong>Customer Name:</strong>
+    @ViewBag.CustomerName
+</p>
+
+<!-- Display category from session. -->
+<p>
+    <strong>Selected Category:</strong>
+    @ViewBag.Category
+</p>
+
+<!-- Display ProductId received from hidden field. -->
+<p>
+    <strong>Selected Product ID:</strong>
+    @ViewBag.ProductId
+</p>
+
+<!-- Display successful selection message. -->
+<div class="alert alert-success">
+    Product selected successfully!
+</div>
+
+<!-- Return to product list. -->
+<a href="/Product"
+   class="btn btn-primary">
+    Back to Products
+</a>
